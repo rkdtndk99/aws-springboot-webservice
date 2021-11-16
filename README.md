@@ -86,3 +86,80 @@ $('#btn-name').on('click', function(){
 });
 ```
 
+***
+
+## CH.6 AWS 서버 환경 만들기 - EC2 
+🌱 인스턴스 생성 완료! 
+
+![image](https://user-images.githubusercontent.com/63537847/140322595-08af00d1-1ff1-4b08-8ce7-d4ce4ada78c9.png)
+
+
+🌱 탄력적 IP 주소 생성 및 연결 
+(연결되었다는 알림창 뜨고 연결된 인스턴스 링크 클릭해야 인스턴스 화면에서도 연결된 탄력 IP주소 볼 수 있었음) 
+
+![image](https://user-images.githubusercontent.com/63537847/140323143-514ad9d6-d8b9-49a6-a2cd-fdbb0a4e5c6c.png)
+
+
+🌱 Git Bash에서 연결 성공 
+(WSL2로 한참 헤매다가 너무 안돼서 git으로 옮겨왔는데 바로 돼서 감격....🤗)
+
+![image](https://user-images.githubusercontent.com/63537847/140323369-e9178225-d33f-42b1-8ff4-becca4949da0.png)
+
+
+🌱 마지막에 HOSTNAME 바꾸는 부분 책 따라하면 바로 안돼서 구글링 해서 추가적인 방법 찾음! 
+
+![image](https://user-images.githubusercontent.com/63537847/140323731-588be253-f350-4cf9-bee2-8ddcc1266919.png)
+
+
+## CH.7 AWS 데이터베이스 환경 만들기 - RDS 
+🌱 DB 파라미터 그룹 만들고 데이터베이스 파라미터 변경까지 완료 
+
+![image](https://user-images.githubusercontent.com/63537847/140464019-5f26028a-59d5-4e52-900c-3568c1499c8b.png)
+
+
+🌱 데이터베이스 보안 그룹 
+
+![image](https://user-images.githubusercontent.com/63537847/140464781-e9ed789d-5bd8-4ad4-8533-8f73a80c9a1f.png)
+
+
+🌱 RDS와 개인 IP, EC2 연동 설정 완료 
+
+![image](https://user-images.githubusercontent.com/63537847/140465416-a6396d95-5758-49e1-8830-78d5e965a58c.png)
+
+
+🌱 DB 연동해서 명령어 실행 
+```sql
+use aws_springboot;
+
+ALTER DATABASE aws_springboot
+CHARACTER SET = 'utf8mb4'
+COLLATE = 'utf8mb4_general_ci';
+
+CREATE TABLE test2(
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    content varchar(255) DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB;
+
+insert into test2(content) values ('테스트');
+
+select * from test2;
+```
+![image](https://user-images.githubusercontent.com/63537847/140470716-59a76d82-c1e5-4df7-89c3-db5927e572b6.png)
+![image](https://user-images.githubusercontent.com/63537847/140472268-5657bc42-a624-40b4-be63-2f94101a7d17.png)
+
+
+🌱 Terminal에서 DB 테이블 보기 
+
+![image](https://user-images.githubusercontent.com/63537847/140472888-231192e7-1a77-4e62-8879-08cb76e50c86.png)
+
+
+#### 😭TroubleShooting😭
+- IntelliJ에서 DB연결 오류
+      [Issue](https://github.com/jojoldu/freelec-springboot2-webservice/issues/687)에 있는 방법으로 그냥 일반 database에 연결함..  
+![image](https://user-images.githubusercontent.com/63537847/140467646-9cb834c8-e390-4b7f-9bfc-4d6d9e892597.png)
+![image](https://user-images.githubusercontent.com/63537847/140469296-8b671dc7-79a8-4246-b435-5c045ed3149a.png)
+ 
+
+
+
